@@ -3,7 +3,8 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 import { connectDb } from './db/connectDb.js'
 import { connectCloudinary } from './utils/connectCloudinary.js'
-import authRouter from './router/webhooksRouter.js'
+import { clerkWebHooksController } from './controller/webhooksController.js'
+
 
 dotenv.config()
 const app = express()
@@ -13,7 +14,7 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-app.use("/api/auth", express.json(), authRouter)
+app.post("/clerk", express.json(), clerkWebHooksController)
 
 
 app.listen(PORT, (err) =>{
