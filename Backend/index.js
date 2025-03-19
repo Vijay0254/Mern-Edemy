@@ -13,7 +13,7 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-app.use("/api/auth", authRouter)
+app.use("/api/auth", express.json(), authRouter)
 
 
 app.listen(PORT, (err) =>{
